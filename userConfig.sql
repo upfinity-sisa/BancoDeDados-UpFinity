@@ -1,9 +1,9 @@
-DROP USER IF EXISTS webdataviz;
-CREATE USER 'webdataviz'@'%' IDENTIFIED BY 'Webdataviz#123.';
-GRANT ALL PRIVILEGES ON db.* TO 'webdataviz'@'%';
+DROP USER IF EXISTS upfinity_select;
+CREATE USER 'upfinity_select'@'%' IDENTIFIED BY 'Urubu100$';
+GRANT ALL PRIVILEGES ON db.* TO 'upfinity_select'@'%';
 
 DROP USER IF EXISTS dev;
-CREATE USER 'dev'@'%' IDENTIFIED BY 'Dev#123.';
+CREATE USER 'dev'@'%' IDENTIFIED BY 'Urubu100$';
 GRANT SELECT ON db.* TO 'dev'@'%';
 
 FLUSH PRIVILEGES;
