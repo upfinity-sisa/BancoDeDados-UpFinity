@@ -1,76 +1,91 @@
-DROP DATABASE db;
-CREATE DATABASE db;
-USE db;
+drop database upfinity;
+CREATE DATABASE upfinity;
+USE upfinity;
 
-CREATE TABLE IF NOT EXISTS EMPRESA (
-    id_empresa         INT           NOT NULL auto_increment,
-    razao_social       VARCHAR(45)   NOT NULL UNIQUE,
-    nome_fantasia      VARCHAR(50)   NOT NULL,
-    cnpj               VARCHAR(45)   NULL UNIQUE,
-    data_criacao       DATETIME      NULL,
-    date_edicao        DATETIME      NULL,
-    PRIMARY KEY (id_empresa)
+CREATE TABLE Endereco (
+    idEndereco INT PRIMARY KEY NOT NULL,
+    cep CHAR(9) NOT NULL,
+    uf CHAR(2) NOT NULL,
+    cidade VARCHAR(70) NOT NULL,
+    logradouro VARCHAR(70) NOT NULL,
+    bairro VARCHAR(70) NOT NULL,
+    complemento VARCHAR(80),
+    latitude DECIMAL(10,8) NOT NULL,
+    longitude DECIMAL(11,8) NOT NULL,
+    numero INT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS USUARIO (
-    id_usuario         INT           NOT NULL AUTO_INCREMENT,
-    nome               VARCHAR(45)   NOT NULL,
-    email              VARCHAR(85)   NOT NULL UNIQUE,
-    senha              VARCHAR(64)   NOT NULL,
-    fk_empresa         INT           NOT NULL,
-    cpf                VARCHAR(11)   NOT NULL UNIQUE,
-    data_nasc          DATE          NOT NULL,
-    funcao_empresa     VARCHAR(45)   NOT NULL,
-    data_criacao       DATETIME      NOT NULL,
-    data_edicao        DATETIME      NOT NULL,
-    PRIMARY KEY (id_usuario),
-    FOREIGN KEY (fk_empresa) REFERENCES EMPRESA(id_empresa)
+CREATE TABLE Empresa (
+    idEmpresa INT PRIMARY KEY NOT NULL,
+    razaoSocial VARCHAR(45) NOT NULL,
+    cnpj CHAR(14) NOT NULL,
+    fkEndereco INT NOT NULL,
+    FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
 );
 
-CREATE TABLE IF NOT EXISTS LOG (
-    id_logs            INT           NOT NULL AUTO_INCREMENT,
-    tipo_processo      VARCHAR(80)   NOT NULL,
-    status             VARCHAR(50)   NULL,
-    mensagem           VARCHAR(255)  NULL,
-    usuario            VARCHAR(90)   NULL,
-    data_criacao       DATETIME      NULL,
-    data_edicao        DATETIME      NULL,
-    PRIMARY KEY (id_logs)
+CREATE TABLE Atm (
+    idAtm INT PRIMARY KEY NOT NULL,
+    fkEmpresa INT NOT NULL,
+    referencia VARCHAR(45) NOT NULL,
+    hostname VARCHAR(45) NOT NULL,
+    modelo VARCHAR(45) NOT NULL,
+    ip VARCHAR(45) NOT NULL,
+    macAddress VARCHAR(45) NOT NULL,
+    sistemaOperacional VARCHAR(45) NOT NULL,
+    statusAtm VARCHAR(45) NOT NULL,
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
-CREATE TABLE IF NOT EXISTS TELEFONE (
-    id_telefone        INT           NOT NULL AUTO_INCREMENT,
-    telefone           CHAR(11)      NULL,
-    fk_empresa         INT           NOT NULL,
-    data_criacao       DATETIME      NULL,
-    data_edicao        DATETIME      NULL,
-    PRIMARY KEY (id_telefone),
-    FOREIGN KEY (fk_empresa) REFERENCES EMPRESA(id_empresa)
+CREATE TABLE Componente (
+    idComponente INT PRIMARY KEY NOT NULL,
+    tipo VARCHAR(45) NOT NULL,
+    unidadeMedida VARCHAR(15) NOT NULL,
+    funcaoMonitorada VARCHAR(45) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS ENDERECO (
-    id_endereco        INT           NOT NULL AUTO_INCREMENT,
-    rua                VARCHAR(75)   NULL,
-    bairro             VARCHAR(45)   NULL,
-    cep                CHAR(8)       NULL,
-    cidade             VARCHAR(45)   NULL,
-    uf                 CHAR(2)       NULL,
-    fk_empresa         INT           NOT NULL,
-    data_criacao       DATETIME      NULL,
-    data_edicao        DATETIME      NULL,
-    PRIMARY KEY (id_endereco),
-    FOREIGN KEY (fk_empresa) REFERENCES EMPRESA(id_empresa)
+CREATE TABLE Parametro (
+    idParametro INT PRIMARY KEY NOT NULL,
+    fkComponente INT NOT NULL,
+    fkAtm INT NOT NULL,
+    limite VARCHAR(45) NOT NULL,
+    FOREIGN KEY (fkComponente) REFERENCES Componente(idComponente),
+    FOREIGN KEY (fkAtm) REFERENCES Atm(idAtm)
 );
 
-CREATE TABLE IF NOT EXISTS NOTIFICACAO (
-    id_notificacao     INT           NOT NULL AUTO_INCREMENT,
-    canal              VARCHAR(45)   NULL,
-    cargo              VARCHAR(45)   NULL,
-    status             TINYINT       NULL,
-    fk_usuario         INT           NOT NULL,
-    fk_empresa         INT           NOT NULL,
-    data_criacao       DATETIME      NULL,
-    data_edicao        DATETIME      NULL,
-    PRIMARY KEY (id_notificacacoes)
+CREATE TABLE Alerta (
+    idAlerta INT PRIMARY KEY NOT NULL,
+    fkParametro INT NOT NULL,
+    descricao VARCHAR(45),
+    tipoAlerta VARCHAR(45) NOT NULL,
+    nivel VARCHAR(45) NOT NULL,
+    valor FLOAT NOT NULL, 
+    dataHoraInicio DATETIME NOT NULL,
+    dataHoraFinal DATETIME NOT NULL,
+    FOREIGN KEY (fkParametro) REFERENCES Parametro(idParametro)
 );
 
+CREATE TABLE Registro (
+    idRegistro INT PRIMARY KEY NOT NULL,
+    fkParametro INT NOT NULL,
+    valor FLOAT NOT NULL,
+    horario DATETIME NOT NULL,
+    FOREIGN KEY (fkParametro) REFERENCES Parametro(idParametro)
+);
+
+CREATE TABLE Permissao (
+    idPermissao INT PRIMARY KEY NOT NULL,
+    permissao VARCHAR(15) NOT NULL
+);
+
+CREATE TABLE Usuario (
+    idUsuario INT PRIMARY KEY NOT NULL,
+    fkPermissao INT NOT NULL,
+    fkEmpresa INT NOT NULL,
+    nomeUsuario VARCHAR(45) NOT NULL,
+	cargo VARCHAR(100) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    senha VARCHAR(250) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    FOREIGN KEY (fkPermissao) REFERENCES Permissao(idPermissao),
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+);
