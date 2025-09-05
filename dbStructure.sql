@@ -1,4 +1,4 @@
-drop database upfinity;
+
 CREATE DATABASE upfinity;
 USE upfinity;
 
