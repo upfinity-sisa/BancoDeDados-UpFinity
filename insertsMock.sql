@@ -1,7 +1,7 @@
 USE upfinity;
 
 
---- INSERINDO ENDEREÇOS
+-- INSERINDO ENDEREÇOS
 INSERT INTO Endereco (cep, uf, cidade, logradouro, bairro, complemento, latitude, longitude, numero) VALUES
 ("01001-001", "SP", "São Paulo", "Rua Direita", "Sé", "Prédio A", "-23.5492", "-46.6346", 123),
 ("21040-360", "RJ", "Rio de Janeiro", "Rua da Praia", "Bonsucesso", "Loja 2", "-22.8687", "-43.2561", 45),
@@ -9,18 +9,18 @@ INSERT INTO Endereco (cep, uf, cidade, logradouro, bairro, complemento, latitude
 ("70070-000", "DF", "Brasília", "Eixo Monumental", "Asa Sul", "Bloco B", "-15.7958", "-47.8824", 10),
 ("90030-001", "RS", "Porto Alegre", "Rua dos Andradas", "Centro Histórico", "Cobertura", "-30.0335", "-51.2291", 567);
 
---- INSERINDO EMPRESAS (2 empresas)
+-- INSERINDO EMPRESAS (2 empresas)
 INSERT INTO Empresa (razaoSocial, cnpj) VALUES
 ("Tecno Soluções S.A.", "11223344000155"),
 ("Rede de ATMs Inteligentes Ltda.", "55667788000111");
 
---- INSERINDO TIPOS DE USUÁRIO
+-- INSERINDO TIPOS DE USUÁRIO
 INSERT INTO TipoUsuario (tipo, permissoes) VALUES
 ("Admin", "CRUD_TOTAL"),
 ("Operador", "CRU_LIMITEDO"),
 ("Visualizador", "READ_ONLY");
 
---- INSERINDO USUÁRIOS (10 usuários)
+-- INSERINDO USUÁRIOS (10 usuários)
 INSERT INTO Usuario (fkEmpresa, fkTipoUsuario, nomeUsuario, email, senha, telefone) VALUES
 (1, 1, "Ana Paula", "ana.paula@tecnosolucoes.com.br", "senha_ana", "11987654321"),
 (1, 2, "Bruno Santos", "bruno.santos@tecnosolucoes.com.br", "senha_bruno", "11987654322"),
@@ -33,7 +33,7 @@ INSERT INTO Usuario (fkEmpresa, fkTipoUsuario, nomeUsuario, email, senha, telefo
 (1, 3, "Ivan Dias", "ivan.dias@tecnosolucoes.com.br", "senha_ivan", "11987654325"),
 (2, 2, "Julia Barros", "julia.barros@redeatms.com.br", "senha_julia", "21912345682");
 
---- INSERINDO ATMS (3 ATMs)
+-- INSERINDO ATMS (3 ATMs)
 INSERT INTO Atm (fkEmpresa, fkEndereco, hostname, modelo, ip, macAddress, sistemaOperacional, statusAtm) VALUES
 (1, 3, "atm-ts-01", "Model-A", "192.168.1.1", "00:1A:2B:3C:4D:5E", "Linux", "Ativo"),
 (1, 4, "atm-ts-02", "Model-B", "192.168.1.2", "00:1A:2B:3C:4D:5F", "Windows", "Ativo"),
@@ -46,7 +46,7 @@ INSERT INTO Componente (tipo, unidadeMedida, funcaoMonitorada) VALUES
 ("CPU", "bits", "CPU_frequencia"),
 ("Memória", "GB", "RAM_disponivel");
 
---- INSERINDO ATMCOMPONENTES (relações entre ATMs e Componentes)
+-- INSERINDO ATMCOMPONENTES (relações entre ATMs e Componentes)
 INSERT INTO AtmComponente (fkAtm, fkComponente, capacidade) VALUES
 (1, 1, "3.8 GHz"), -- CPU para o ATM-1
 (1, 2, "16 GB"),   -- Memória para o ATM-1
@@ -59,7 +59,7 @@ INSERT INTO AtmComponente (fkAtm, fkComponente, capacidade) VALUES
 (3, 1, "3.5 GHz"), -- CPU para o ATM-3
 (3, 2, "16 GB");   -- Memória para o ATM-3
 
---- INSERINDO PARÂMETROS
+-- INSERINDO PARÂMETROS
 INSERT INTO Parametro (fkAtmComponente, limite) VALUES
 (1, "90"),  -- Limite de uso de CPU para o ATM-1
 (2, "95"),  -- Limite de uso de RAM para o ATM-1
