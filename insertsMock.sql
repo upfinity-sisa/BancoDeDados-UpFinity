@@ -4,8 +4,8 @@ USE upfinity;
 --- INSERINDO ENDEREÇOS
 INSERT INTO Endereco (cep, uf, cidade, logradouro, bairro, complemento, latitude, longitude, numero) VALUES
 ('01001-001', 'SP', 'São Paulo', 'Rua Direita', 'Sé', 'Prédio A', '-23.5492', '-46.6346', 123),
-('21040-360', 'RJ', 'Rio de Janeiro', 'Rua da Praia', 'Bonsucesso', 'Loja 2', -22.8687, '-43.2561', 45),
-('30110-008', 'MG', 'Belo Horizonte', 'Rua da Bahia', 'Centro', 'Sala 101', -'19.9208', '-43.9392', 789),
+('21040-360', 'RJ', 'Rio de Janeiro', 'Rua da Praia', 'Bonsucesso', 'Loja 2', '-22.8687', '-43.2561', 45),
+('30110-008', 'MG', 'Belo Horizonte', 'Rua da Bahia', 'Centro', 'Sala 101', '-19.9208', '-43.9392', 789),
 ('70070-000', 'DF', 'Brasília', 'Eixo Monumental', 'Asa Sul', 'Bloco B', '-15.7958', '-47.8824', 10),
 ('90030-001', 'RS', 'Porto Alegre', 'Rua dos Andradas', 'Centro Histórico', 'Cobertura', '-30.0335', '-51.2291', 567);
 
