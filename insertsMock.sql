@@ -38,7 +38,7 @@ INSERT INTO Atm (fkEmpresa, fkEndereco, hostname, modelo, ip, macAddress, sistem
 (1, 3, "atm-ts-01", "Model-A", "192.168.1.1", "00:1A:2B:3C:4D:5E", "Linux", "Ativo"),
 (1, 4, "atm-ts-02", "Model-B", "192.168.1.2", "00:1A:2B:3C:4D:5F", "Windows", "Ativo"),
 (2, 5, "atm-ra-01", "Model-C", "192.168.2.1", "A1:B2:C3:D4:E5:F6", "Linux", "Ativo");
---- INSERINDO COMPONENTES
+-- INSERINDO COMPONENTES
 INSERT INTO Componente (tipo, unidadeMedida, funcaoMonitorada) VALUES
 ("CPU", "%", "CPU_porcentagem"),
 ("Memória", "%", "RAM_percentual"),
