@@ -11,8 +11,8 @@ CREATE TABLE Endereco (
     logradouro VARCHAR(70) NOT NULL,
     bairro VARCHAR(70) NOT NULL,
     complemento VARCHAR(80),
-    latitude DECIMAL(10,8) NOT NULL,
-    longitude DECIMAL(11,8) NOT NULL,
+    latitude VARCHAR(45) NOT NULL,
+    longitude VARCHAR(45) NOT NULL,
     numero INT NOT NULL
 );
 
