@@ -1,5 +1,6 @@
 USE upfinity;
 
+
 --- INSERINDO ENDEREÇOS
 INSERT INTO Endereco (cep, uf, cidade, logradouro, bairro, complemento, latitude, longitude, numero) VALUES
 ('01001-001', 'SP', 'São Paulo', 'Rua Direita', 'Sé', 'Prédio A', -23.5492, -46.6346, 123),

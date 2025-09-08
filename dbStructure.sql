@@ -229,4 +229,3 @@ select * from vw_atm_componentes;
 select * from vw_parametros_limites;
 select * from vw_dados_monitoramento;
 select * from vw_historico_alertas;
-truncate Alerta;
