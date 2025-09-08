@@ -221,3 +221,12 @@ LEFT JOIN Atm AS a_atm ON al.fkAtm = a_atm.idAtm
 LEFT JOIN AtmComponente AS ac ON al.fkAtmComponente = ac.idAtmComponente
 LEFT JOIN Atm AS a_comp_atm ON ac.fkAtm = a_comp_atm.idAtm
 LEFT JOIN Componente AS c ON ac.fkComponente = c.idComponente;
+
+
+select * from vw_usuarios_detalhes;
+select * from vw_atm_situacao;
+select * from vw_atm_componentes;
+select * from vw_parametros_limites;
+select * from vw_dados_monitoramento;
+select * from vw_historico_alertas;
+truncate Alerta;
