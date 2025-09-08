@@ -1,54 +1,69 @@
 USE upfinity;
--- INSERINDO ENDEREÇOS
-INSERT INTO Endereco VALUES
-(1, '01001-000', 'SP', 'São Paulo', 'Av. Paulista', 'Bela Vista', 'Próximo ao MASP', -23.561684, -46.655981, 1000),
-(2, '20040-002', 'RJ', 'Rio de Janeiro', 'Rua da Assembleia', 'Centro', NULL, -22.906847, -43.172896, 50),
-(3, '30130-000', 'MG', 'Belo Horizonte', 'Av. Afonso Pena', 'Centro', 'Edifício JK', -19.919052, -43.938668, 400);
 
--- INSERINDO EMPRESAS
-INSERT INTO Empresa VALUES
-(1, 'TechVision Ltda', '12345678000199', 1),
-(2, 'EcoMonitor S.A.', '98765432000188', 2),
-(3, 'DataSense Brasil', '45678912000177', 3);
+--- INSERINDO ENDEREÇOS
+INSERT INTO Endereco (cep, uf, cidade, logradouro, bairro, complemento, latitude, longitude, numero) VALUES
+('01001-001', 'SP', 'São Paulo', 'Rua Direita', 'Sé', 'Prédio A', -23.5492, -46.6346, 123),
+('21040-360', 'RJ', 'Rio de Janeiro', 'Rua da Praia', 'Bonsucesso', 'Loja 2', -22.8687, -43.2561, 45),
+('30110-008', 'MG', 'Belo Horizonte', 'Rua da Bahia', 'Centro', 'Sala 101', -19.9208, -43.9392, 789),
+('70070-000', 'DF', 'Brasília', 'Eixo Monumental', 'Asa Sul', 'Bloco B', -15.7958, -47.8824, 10),
+('90030-001', 'RS', 'Porto Alegre', 'Rua dos Andradas', 'Centro Histórico', 'Cobertura', -30.0335, -51.2291, 567);
 
--- INSERINDO PERMISSÕES
-INSERT INTO Permissao VALUES
-(1, 'Admin'),
-(2, 'Operador'),
-(3, 'Visualizador');
+--- INSERINDO EMPRESAS (2 empresas)
+INSERT INTO Empresa (razaoSocial, cnpj) VALUES
+('Tecno Soluções S.A.', '11223344000155'),
+('Rede de ATMs Inteligentes Ltda.', '55667788000111');
 
--- INSERINDO USUÁRIOS
-INSERT INTO Usuario VALUES
-(1, 1, 1, 'joao.silva', 'Gerente de TI', 'joao@techvision.com', 'senha123', '11999999999'),
-(2, 2, 2, 'maria.oliveira', 'Analista Ambiental', 'maria@ecomonitor.com', 'senha456', '21988888888'),
-(3, 3, 3, 'carlos.souza', 'Supervisor de Dados', 'carlos@datasense.com', 'senha789', '31977777777');
+--- INSERINDO TIPOS DE USUÁRIO
+INSERT INTO TipoUsuario (tipo, permissoes) VALUES
+('Admin', 'CRUD_TOTAL'),
+('Operador', 'CRU_LIMITEDO'),
+('Visualizador', 'READ_ONLY');
 
--- INSERINDO ATMs
-INSERT INTO Atm VALUES
-(1, 1, 'ATM-SP-01', 'atm01.techvision.local', 'Model-X', '192.168.0.1', 'AA:BB:CC:DD:EE:01', 'Linux', 'Ativo'),
-(2, 2, 'ATM-RJ-01', 'atm01.ecomonitor.local', 'Model-Y', '192.168.0.2', 'AA:BB:CC:DD:EE:02', 'Windows', 'Ativo'),
-(3, 3, 'ATM-MG-01', 'atm01.datasense.local', 'Model-Z', '192.168.0.3', 'AA:BB:CC:DD:EE:03', 'Linux', 'Inativo');
+--- INSERINDO USUÁRIOS (10 usuários)
+INSERT INTO Usuario (fkEmpresa, fkTipoUsuario, nomeUsuario, email, senha, telefone) VALUES
+(1, 1, 'Ana Paula', 'ana.paula@tecnosolucoes.com.br', 'senha_ana', '11987654321'),
+(1, 2, 'Bruno Santos', 'bruno.santos@tecnosolucoes.com.br', 'senha_bruno', '11987654322'),
+(1, 3, 'Carla Lima', 'carla.lima@tecnosolucoes.com.br', 'senha_carla', '11987654323'),
+(2, 1, 'Daniel Costa', 'daniel.costa@redeatms.com.br', 'senha_daniel', '21912345678'),
+(2, 2, 'Elaine Pereira', 'elaine.pereira@redeatms.com.br', 'senha_elaine', '21912345679'),
+(2, 2, 'Fabio Mendes', 'fabio.mendes@redeatms.com.br', 'senha_fabio', '21912345680'),
+(2, 3, 'Gabriela Rocha', 'gabriela.rocha@redeatms.com.br', 'senha_gabriela', '21912345681'),
+(1, 2, 'Helena Alves', 'helena.alves@tecnosolucoes.com.br', 'senha_helena', '11987654324'),
+(1, 3, 'Ivan Dias', 'ivan.dias@tecnosolucoes.com.br', 'senha_ivan', '11987654325'),
+(2, 2, 'Julia Barros', 'julia.barros@redeatms.com.br', 'senha_julia', '21912345682');
 
--- INSERINDO COMPONENTES
+--- INSERINDO ATMS (3 ATMs)
+INSERT INTO Atm (fkEmpresa, fkEndereco, hostname, modelo, ip, macAddress, sistemaOperacional, statusAtm) VALUES
+(1, 3, 'atm-ts-01', 'Model-A', '192.168.1.1', '00:1A:2B:3C:4D:5E', 'Linux', 'Ativo'),
+(1, 4, 'atm-ts-02', 'Model-B', '192.168.1.2', '00:1A:2B:3C:4D:5F', 'Windows', 'Ativo'),
+(2, 5, 'atm-ra-01', 'Model-C', '192.168.2.1', 'A1:B2:C3:D4:E5:F6', 'Linux', 'Ativo');
+--- INSERINDO COMPONENTES
 INSERT INTO Componente (tipo, unidadeMedida, funcaoMonitorada) VALUES
 ('CPU', '%', 'CPU_porcentagem'),
 ('Memória', '%', 'RAM_percentual'),
-('Disco', '%', 'DISK_percentual');
+('Disco', '%', 'DISK_percentual'),
+('CPU', 'bits', 'CPU_frequencia'),
+('Memória', 'GB', 'RAM_disponivel');
 
--- Inserir parâmetros
-INSERT INTO Parametro (fkComponente, fkAtm, limite) VALUES
-(1, 1, '80'),  -- CPU do ATM-1 com limite de 80%
-(2, 1, '85'),  -- Memória do ATM-1 com limite de 85%
-(3, 1, '90'),  -- Disco do ATM-1 com limite de 90%
-(1, 2, '75');  -- CPU do ATM-2 com limite de 75%
+--- INSERINDO ATMCOMPONENTES (relações entre ATMs e Componentes)
+INSERT INTO AtmComponente (fkAtm, fkComponente, capacidade) VALUES
+(1, 1, '3.8 GHz'), -- CPU para o ATM-1
+(1, 2, '16 GB'),   -- Memória para o ATM-1
+(1, 3, '512 GB'),  -- Disco para o ATM-1
+(1, 4, 'ASUS Z370'),-- Placa-mãe para o ATM-1
+(2, 1, '3.2 GHz'), -- CPU para o ATM-2
+(2, 2, '8 GB'),    -- Memória para o ATM-2
+(2, 3, '256 GB'),  -- Disco para o ATM-2
+(2, 5, '600W'),    -- Fonte para o ATM-2
+(3, 1, '3.5 GHz'), -- CPU para o ATM-3
+(3, 2, '16 GB');   -- Memória para o ATM-3
 
--- Inserir alguns registros
-INSERT INTO Registro (fkParametro, valor, horario) VALUES
-(1, 45.2, NOW() - INTERVAL 1 HOUR),
-(1, 82.5, NOW() - INTERVAL 30 MINUTE),
-(2, 70.1, NOW() - INTERVAL 45 MINUTE);
-
--- Inserir alertas (se necessário)
-INSERT INTO Alerta (fkParametro, descricao, tipoAlerta, nivel, dataHoraInicio, dataHoraFinal, valor) VALUES
-(1, 'Uso de CPU acima do limite', 'Alta utilização', 'Crítico', NOW() - INTERVAL 25 MINUTE, NULL, 10.00);
-
+--- INSERINDO PARÂMETROS
+INSERT INTO Parametro (fkAtmComponente, limite) VALUES
+(1, '90'),  -- Limite de uso de CPU para o ATM-1
+(2, '95'),  -- Limite de uso de RAM para o ATM-1
+(3, '98'),  -- Limite de uso de Disco para o ATM-1
+(4, '65'), -- Limite de temperatura da Placa-mãe para o ATM-1
+(5, '85'),  -- Limite de uso de CPU para o ATM-2
+(6, '90'),  -- Limite de uso de RAM para o ATM-2
+(7, '95');  -- Limite de uso de Disco para o ATM-2

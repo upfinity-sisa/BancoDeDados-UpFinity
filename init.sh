@@ -1,6 +1,6 @@
 #!/bin/bash
 echo ''
-echo '----Script de criação do banco de dados da SMART BERRY----'
+echo '----Script de criação do banco de dados da UPFINITY----'
 echo ''
 
 echo ''
