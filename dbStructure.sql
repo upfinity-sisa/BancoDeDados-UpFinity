@@ -1,4 +1,3 @@
-drop database if exists upfinity;
 CREATE DATABASE upfinity;
 USE upfinity;
 
