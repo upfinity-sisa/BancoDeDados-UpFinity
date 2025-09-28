@@ -1,7 +1,7 @@
 CREATE DATABASE upfinity;
 USE upfinity;
 
--- Criação das tabelas do modelo
+-- Tabela TipoComponente
 
 CREATE TABLE TipoComponente (
     idTipoComponente INT PRIMARY KEY AUTO_INCREMENT,
@@ -9,12 +9,16 @@ CREATE TABLE TipoComponente (
     unidadeMedida VARCHAR(45) NOT NULL
 );
 
+-- Tabela Empresa
+
 CREATE TABLE Empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
     razaoSocial VARCHAR(45) NOT NULL,
     nomeFantasia VARCHAR(45),
     CNPJ CHAR(14) NOT NULL
 );
+
+-- Tabela Endereco
 
 CREATE TABLE Endereco (
     idEndereco INT PRIMARY KEY AUTO_INCREMENT,
@@ -26,6 +30,8 @@ CREATE TABLE Endereco (
     UF CHAR(2) NOT NULL,
     CEP CHAR(8) NOT NULL
 );
+
+-- Tabela Atm
 
 CREATE TABLE Atm (
     idAtm INT PRIMARY KEY AUTO_INCREMENT,
@@ -41,6 +47,8 @@ CREATE TABLE Atm (
     FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
 );
 
+-- Tabela Componente
+
 CREATE TABLE Componente (
     idComponente INT PRIMARY KEY AUTO_INCREMENT,
     fkAtm INT NOT NULL,
@@ -48,6 +56,8 @@ CREATE TABLE Componente (
     FOREIGN KEY (fkAtm) REFERENCES Atm(idAtm),
     FOREIGN KEY (fkTipoComponente) REFERENCES TipoComponente(idTipoComponente)
 );
+
+-- Tabela Captura
 
 CREATE TABLE Captura (
     idCaptura INT PRIMARY KEY AUTO_INCREMENT,
@@ -57,11 +67,15 @@ CREATE TABLE Captura (
     FOREIGN KEY (fkAtmComponente) REFERENCES Componente(idComponente)
 );
 
+-- Tabela TipoAlerta
+
 CREATE TABLE TipoAlerta (
     idTipoAlerta INT PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(45),
     nivel INT
 );
+
+-- Tabela Alerta
 
 CREATE TABLE Alerta (
     idAlerta INT PRIMARY KEY AUTO_INCREMENT,
@@ -70,6 +84,8 @@ CREATE TABLE Alerta (
     FOREIGN KEY (fkTipoAlerta) REFERENCES TipoAlerta(idTipoAlerta),
     FOREIGN KEY (fkCaptura) REFERENCES Captura(idCaptura)
 );
+
+-- Tabela Parametro
 
 CREATE TABLE Parametro (
     idParametro INT PRIMARY KEY AUTO_INCREMENT,
@@ -81,10 +97,14 @@ CREATE TABLE Parametro (
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
+-- Tabela TipoUsuario
+
 CREATE TABLE TipoUsuario (
     idTipoUsuario INT PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(45)
 );
+
+-- Tabela Usuario
 
 CREATE TABLE Usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -95,6 +115,8 @@ CREATE TABLE Usuario (
     senha VARCHAR(45) NOT NULL,
     FOREIGN KEY (fkTipoUsuario) REFERENCES TipoUsuario(idTipoUsuario)
 );
+
+-- Tabela Token
 
 CREATE TABLE Token (
     idToken INT PRIMARY KEY AUTO_INCREMENT,
