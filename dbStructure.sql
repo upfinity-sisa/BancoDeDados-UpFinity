@@ -1,6 +1,7 @@
 CREATE DATABASE upfinity;
 USE upfinity;
 
+
 -- Tabela TipoComponente
 
 CREATE TABLE TipoComponente (
@@ -13,9 +14,11 @@ CREATE TABLE TipoComponente (
 
 CREATE TABLE Empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+    fkUsuario INT NOT NULL,
     razaoSocial VARCHAR(45) NOT NULL,
     nomeFantasia VARCHAR(45),
-    CNPJ CHAR(14) NOT NULL
+    CNPJ CHAR(14) NOT NULL,
+    FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
 );
 
 -- Tabela Endereco
@@ -108,12 +111,12 @@ CREATE TABLE TipoUsuario (
 
 CREATE TABLE Usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-    fkTipoUsuario INT NOT NULL,
+    fkTipo INT NOT NULL,
     nome VARCHAR(45) NOT NULL,
     CPF CHAR(11) NOT NULL,
     email VARCHAR(45) NOT NULL,
     senha VARCHAR(45) NOT NULL,
-    FOREIGN KEY (fkTipoUsuario) REFERENCES TipoUsuario(idTipoUsuario)
+    FOREIGN KEY (fkTipo) REFERENCES TipoUsuario(idTipoUsuario)
 );
 
 -- Tabela Token
