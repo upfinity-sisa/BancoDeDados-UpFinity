@@ -1,6 +1,12 @@
 CREATE DATABASE upfinity;
 USE upfinity;
 
+-- Tabela TipoUsuario
+
+CREATE TABLE TipoUsuario (
+    idTipoUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(45)
+);
 
 -- Tabela TipoComponente
 
@@ -8,17 +14,6 @@ CREATE TABLE TipoComponente (
     idTipoComponente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
     unidadeMedida VARCHAR(45) NOT NULL
-);
-
--- Tabela Empresa
-
-CREATE TABLE Empresa (
-    idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
-    fkUsuario INT NOT NULL,
-    razaoSocial VARCHAR(45) NOT NULL,
-    nomeFantasia VARCHAR(45),
-    CNPJ CHAR(14) NOT NULL,
-    FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
 );
 
 -- Tabela Endereco
@@ -32,6 +27,37 @@ CREATE TABLE Endereco (
     cidade VARCHAR(45) NOT NULL,
     UF CHAR(2) NOT NULL,
     CEP CHAR(8) NOT NULL
+);
+
+-- Tabela TipoAlerta
+
+CREATE TABLE TipoAlerta (
+    idTipoAlerta INT PRIMARY KEY AUTO_INCREMENT,
+    descricao VARCHAR(45),
+    nivel INT
+);
+
+-- Tabela Usuario
+
+CREATE TABLE Usuario (
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    fkTipo INT NOT NULL,
+    fkUsuario INT NOT NULL,
+    nome VARCHAR(45) NOT NULL,
+    CPF CHAR(11) NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    senha VARCHAR(45) NOT NULL,
+    FOREIGN KEY (fkTipo) REFERENCES TipoUsuario(idTipoUsuario),
+    FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
+);
+
+-- Tabela Empresa
+
+CREATE TABLE Empresa (
+    idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+    razaoSocial VARCHAR(45) NOT NULL,
+    nomeFantasia VARCHAR(45),
+    CNPJ CHAR(14) NOT NULL
 );
 
 -- Tabela Atm
@@ -70,14 +96,6 @@ CREATE TABLE Captura (
     FOREIGN KEY (fkAtmComponente) REFERENCES Componente(idComponente)
 );
 
--- Tabela TipoAlerta
-
-CREATE TABLE TipoAlerta (
-    idTipoAlerta INT PRIMARY KEY AUTO_INCREMENT,
-    descricao VARCHAR(45),
-    nivel INT
-);
-
 -- Tabela Alerta
 
 CREATE TABLE Alerta (
@@ -100,35 +118,21 @@ CREATE TABLE Parametro (
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
--- Tabela TipoUsuario
+-- Tabela statusEtapas
 
-CREATE TABLE TipoUsuario (
-    idTipoUsuario INT PRIMARY KEY AUTO_INCREMENT,
-    descricao VARCHAR(45)
-);
-
--- Tabela Usuario
-
-CREATE TABLE Usuario (
-    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-    fkTipo INT NOT NULL,
-    nome VARCHAR(45) NOT NULL,
-    CPF CHAR(11) NOT NULL,
-    email VARCHAR(45) NOT NULL,
-    senha VARCHAR(45) NOT NULL,
-    FOREIGN KEY (fkTipo) REFERENCES TipoUsuario(idTipoUsuario)
-);
-
--- Tabela Token
-
-CREATE TABLE Token (
-    idToken INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE statusEtapas (
+    idStatusEtapas INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT NOT NULL,
     fkUsuario INT NOT NULL,
-    statusToken TINYINT,
-    dtGeracao TIMESTAMP,
-    duracaoHoras INT,
-    codigo CHAR(8),
-    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
-    FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+);
+
+-- Tabela Planos
+
+CREATE TABLE plano (
+	idPlano INT PRIMARY KEY AUTO_INCREMENT,
+    fkEmpresa INT NOT NULL,
+    tipoPlano INT,
+    valorPlano INT,
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
