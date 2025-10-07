@@ -13,7 +13,8 @@ CREATE TABLE TipoUsuario (
 CREATE TABLE TipoComponente (
     idTipoComponente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
-    unidadeMedida VARCHAR(45) NOT NULL
+    unidadeMedida VARCHAR(45) NOT NULL,
+    processos VARCHAR(45)
 );
 
 -- Tabela Endereco
