@@ -1,17 +1,17 @@
-CREATE DATABASE upfinity;
+CREATE DATABASE IF NOT EXISTS upfinity;
 USE upfinity;
 
 
 -- Tabela TipoUsuario
 
-CREATE TABLE TipoUsuario (
+CREATE TABLE IF NOT EXISTS TipoUsuario (
     idTipoUsuario INT PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(45)
 );
 
 -- Tabela TipoComponente
 
-CREATE TABLE TipoComponente (
+CREATE TABLE IF NOT EXISTS TipoComponente (
     idTipoComponente INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45) NOT NULL,
     unidadeMedida VARCHAR(45) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE TipoComponente (
 
 -- Tabela Endereco
 
-CREATE TABLE Endereco (
+CREATE TABLE IF NOT EXISTS Endereco (
     idEndereco INT PRIMARY KEY AUTO_INCREMENT,
     logradouro VARCHAR(45) NOT NULL,
     num CHAR(5) NOT NULL,
@@ -33,7 +33,7 @@ CREATE TABLE Endereco (
 
 -- Tabela TipoAlerta
 
-CREATE TABLE TipoAlerta (
+CREATE TABLE IF NOT EXISTS TipoAlerta (
     idTipoAlerta INT PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(45),
     nivel INT
@@ -41,7 +41,7 @@ CREATE TABLE TipoAlerta (
 
 -- Tabela Empresa
 
-CREATE TABLE Empresa (
+CREATE TABLE IF NOT EXISTS Empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
     razaoSocial VARCHAR(45) NOT NULL,
     nomeFantasia VARCHAR(45),
@@ -50,7 +50,7 @@ CREATE TABLE Empresa (
 
 -- Tabela Usuario
 
-CREATE TABLE Usuario (
+CREATE TABLE IF NOT EXISTS Usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     fkTipo INT NOT NULL,
     fkUsuario INT NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE Usuario (
 
 -- Tabela Atm
 
-CREATE TABLE Atm (
+CREATE TABLE IF NOT EXISTS Atm (
     idAtm INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT NOT NULL,
     fkEndereco INT NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE Atm (
 
 -- Tabela Componente
 
-CREATE TABLE Componente (
+CREATE TABLE IF NOT EXISTS Componente (
     idComponente INT PRIMARY KEY AUTO_INCREMENT,
     fkAtm INT NOT NULL,
     fkTipoComponente INT NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE Componente (
 
 -- Tabela Captura
 
-CREATE TABLE Captura (
+CREATE TABLE IF NOT EXISTS Captura (
     idCaptura INT PRIMARY KEY AUTO_INCREMENT,
     fkAtmComponente INT NOT NULL,
     valor DOUBLE,
@@ -102,7 +102,7 @@ CREATE TABLE Captura (
 
 -- Tabela Alerta
 
-CREATE TABLE Alerta (
+CREATE TABLE IF NOT EXISTS Alerta (
     idAlerta INT PRIMARY KEY AUTO_INCREMENT,
     fkTipoAlerta INT NOT NULL,
     fkCaptura INT NOT NULL,
@@ -112,7 +112,7 @@ CREATE TABLE Alerta (
 
 -- Tabela Parametro
 
-CREATE TABLE Parametro (
+CREATE TABLE IF NOT EXISTS Parametro (
     idParametro INT PRIMARY KEY AUTO_INCREMENT,
     fkTipoComponente INT NOT NULL,
     fkEmpresa INT NOT NULL,
@@ -124,7 +124,7 @@ CREATE TABLE Parametro (
 
 -- Tabela statusEtapas
 
-CREATE TABLE statusEtapas (
+CREATE TABLE IF NOT EXISTS statusEtapas (
     idStatusEtapas INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT NOT NULL,
     fkUsuario INT NOT NULL,
@@ -133,7 +133,7 @@ CREATE TABLE statusEtapas (
 
 -- Tabela Planos
 
-CREATE TABLE plano (
+CREATE TABLE IF NOT EXISTS  plano (
 	idPlano INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT NOT NULL,
     tipoPlano INT,
