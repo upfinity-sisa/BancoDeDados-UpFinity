@@ -1,7 +1,6 @@
 CREATE DATABASE IF NOT EXISTS upfinity;
 USE upfinity;
 
-
 -- Tabela TipoUsuario
 
 CREATE TABLE IF NOT EXISTS TipoUsuario (
@@ -53,14 +52,12 @@ CREATE TABLE IF NOT EXISTS Empresa (
 CREATE TABLE IF NOT EXISTS Usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     fkTipo INT NOT NULL,
-    fkUsuario INT NOT NULL,
     fkEmpresa INT NOT NULL,
     nome VARCHAR(45) NOT NULL,
     CPF CHAR(11) NOT NULL,
     email VARCHAR(45) NOT NULL,
     senha VARCHAR(45) NOT NULL,
     FOREIGN KEY (fkTipo) REFERENCES TipoUsuario(idTipoUsuario),
-    FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario),
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
@@ -71,8 +68,6 @@ CREATE TABLE IF NOT EXISTS Atm (
     fkEmpresa INT NOT NULL,
     fkEndereco INT NOT NULL,
     numeroAtm INT NOT NULL,
-    ip VARCHAR(45) NOT NULL,
-    macAddress VARCHAR(45) NOT NULL,
     latitude DOUBLE NOT NULL,
     longitude DOUBLE NOT NULL,
     status INT,
@@ -116,10 +111,12 @@ CREATE TABLE IF NOT EXISTS Parametro (
     idParametro INT PRIMARY KEY AUTO_INCREMENT,
     fkTipoComponente INT NOT NULL,
     fkEmpresa INT NOT NULL,
+    fkTipoAlerta INT NOT NULL,
     limiteMin DOUBLE,
     limiteMax DOUBLE,
     FOREIGN KEY (fkTipoComponente) REFERENCES TipoComponente(idTipoComponente),
-    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
+    FOREIGN KEY (fkTipoAlerta) REFERENCES TipoAlerta(idTipoAlerta)
 );
 
 -- Tabela statusEtapas
@@ -127,16 +124,17 @@ CREATE TABLE IF NOT EXISTS Parametro (
 CREATE TABLE IF NOT EXISTS statusEtapas (
     idStatusEtapas INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT NOT NULL,
-    fkUsuario INT NOT NULL,
+	estagioAprovacao INT,
+	statusPagamento INT,
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
 -- Tabela Planos
 
-CREATE TABLE IF NOT EXISTS  plano (
+CREATE TABLE IF NOT EXISTS plano (
 	idPlano INT PRIMARY KEY AUTO_INCREMENT,
-    fkEmpresa INT NOT NULL,
-    tipoPlano INT,
-    valorPlano INT,
-    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+    	fkEmpresa INT NOT NULL,
+    	tipoPlano INT,
+    	valorPlano INT,
+    	FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
