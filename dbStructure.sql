@@ -133,8 +133,8 @@ CREATE TABLE IF NOT EXISTS statusEtapas (
 
 CREATE TABLE IF NOT EXISTS plano (
 	idPlano INT PRIMARY KEY AUTO_INCREMENT,
-    	fkEmpresa INT NOT NULL,
-    	tipoPlano INT,
-    	valorPlano INT,
-    	FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
+    fkEmpresa INT NOT NULL,
+    tipoPlano INT,
+    valorPlano INT,
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
