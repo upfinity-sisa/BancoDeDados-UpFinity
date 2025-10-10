@@ -1,6 +1,7 @@
 CREATE DATABASE upfinity;
 USE upfinity;
 
+
 -- Tabela TipoUsuario
 
 CREATE TABLE TipoUsuario (
@@ -38,20 +39,6 @@ CREATE TABLE TipoAlerta (
     nivel INT
 );
 
--- Tabela Usuario
-
-CREATE TABLE Usuario (
-    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
-    fkTipo INT NOT NULL,
-    fkUsuario INT NOT NULL,
-    nome VARCHAR(45) NOT NULL,
-    CPF CHAR(11) NOT NULL,
-    email VARCHAR(45) NOT NULL,
-    senha VARCHAR(45) NOT NULL,
-    FOREIGN KEY (fkTipo) REFERENCES TipoUsuario(idTipoUsuario),
-    FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
-);
-
 -- Tabela Empresa
 
 CREATE TABLE Empresa (
@@ -59,6 +46,22 @@ CREATE TABLE Empresa (
     razaoSocial VARCHAR(45) NOT NULL,
     nomeFantasia VARCHAR(45),
     CNPJ CHAR(14) NOT NULL
+);
+
+-- Tabela Usuario
+
+CREATE TABLE Usuario (
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+    fkTipo INT NOT NULL,
+    fkUsuario INT NOT NULL,
+    fkEmpresa INT NOT NULL,
+    nome VARCHAR(45) NOT NULL,
+    CPF CHAR(11) NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    senha VARCHAR(45) NOT NULL,
+    FOREIGN KEY (fkTipo) REFERENCES TipoUsuario(idTipoUsuario),
+    FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario),
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
 -- Tabela Atm
