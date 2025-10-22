@@ -1,4 +1,4 @@
 DROP USER IF EXISTS funcUpFinity;
-CREATE USER 'funcUpFinity'@'%' IDENTIFIED BY 'Upfinity123';
-GRANT ALL PRIVILEGES ON db.* TO 'funcUpFinity'@'%';
+CREATE USER 'funcUpFinity'@'%' IDENTIFIED BY 'UpFinity123';
+GRANT ALL PRIVILEGES ON *.* TO 'funcUpFinity'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
