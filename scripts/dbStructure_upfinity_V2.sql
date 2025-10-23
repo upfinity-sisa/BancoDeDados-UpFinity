@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS Atm (
     numeracao INT NOT NULL,
     latitude DOUBLE NOT NULL,
     longitude DOUBLE NOT NULL,
-    statusEstado INT NOT NULL,
+    statusEstado INT NOT NULL, -- 0 - desligado, 1 - ligado, 2 - manutenção
     statusMonitoramento INT NOT NULL,
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
     FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
