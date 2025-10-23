@@ -1,43 +1,53 @@
+USE upfinity;
+
+INSERT INTO Plano (nome, descricao, maxATMs, valorPlano) VALUES
+('Básico', 'Monitoramento de até 10 ATMs', 10, 199.90),
+('Premium', 'Monitoramento ilimitado com suporte 24/7', 1000, 999.90);
+
 INSERT INTO TipoUsuario (descricao) VALUES
-('Administrador'),
+('Administrador Global'),
+('Administrador Empresa'),
 ('Técnico');
 
-INSERT INTO TipoComponente (nome, unidadeMedida, processos) VALUES
-('CPU', '%', 'Uso'),
-('CPU', '°C', 'Temperatura'),
-('Memória RAM', 'GB', 'Uso'),
-('Disco', '%', 'Uso'),
-('Rede', 'MB', 'Tráfego de rede');
+INSERT INTO TipoComponente (nome, unidadeMedida) VALUES
+('CPU', '%'),
+('Memória RAM', '%'),
+('Disco', '%'),
+('Placa de rede', 'mb');
 
 INSERT INTO TipoAlerta (descricao, nivel) VALUES
 ('Crítico', 1),
-('Atenção', 2);
+('Moderado', 2);
 
-INSERT INTO Empresa (razaoSocial, nomeFantasia, CNPJ) VALUES
-('Banco Digital Brasileiro S.A.', 'Banco DBB', '12345678000199');
+INSERT INTO Endereco (logradouro, num, bairro, cidade, UF, CEP, complemento) VALUES
+('Avenida Paulista', '1000', 'Bela Vista', 'São Paulo', 'SP', '01310100', 'Próximo ao metrô Trianon-Masp'),
+('Avenida Rio Branco', '250', 'Centro', 'Rio de Janeiro', 'RJ', '20040009', 'Andar 15, Bloco B');
 
-INSERT INTO Endereco (logradouro, num, complemento, bairro, cidade, UF, CEP) VALUES
-('Avenida Paulista', '1578', 'Andar 10', 'Bela Vista', 'São Paulo', 'SP', '01310200');
+INSERT INTO Empresa (fkPlano, razaoSocial, CNPJ, statusAprovacao, statusPagamento, nomeFantasia) VALUES
+(1, 'Banco Digital Exemplo SA', '12345678000190', 1, TRUE, 'Banco Exemplo');
 
-INSERT INTO Usuario (fkTipo, fkEmpresa, nome, CPF, email, senha) VALUES
-(1, 1, 'Joãozinho', '11122233344', 'admin@dbb.com', 'senhaForteAdmin');
+INSERT INTO Usuario (fkTipoUsuario, fkEmpresa, nome, CPF, email, senha) VALUES
+(2, 1, 'João da Silva', '11122233344', 'joao.silva@bancoexemplo.com', 'senhaForte123'),
+(3, 1, 'Maria Oliveira', '55566677788', 'maria.oliveira@bancoexemplo.com', 'outraSenha456');
 
-INSERT INTO Atm (fkEmpresa, fkEndereco, numeroAtm, latitude, longitude, status) VALUES
-(1, 1, 100, -23.5613, -46.6565, 1);
+INSERT INTO Atm (fkEmpresa, fkEndereco, numeracao, latitude, longitude, statusEstado, statusMonitoramento) VALUES
+(1, 1, 12345, -23.5613, -46.6565, 1, 1),
+(1, 2, 67890, -22.9035, -43.2096, 3, 2);
 
-INSERT INTO Componente (fkAtm, fkTipoComponente) VALUES
-(1, 1), 
-(1, 2), 
-(1, 3),
-(1, 4),
-(1, 5);
+INSERT INTO Componente (idComponente, fkAtm, fkTipoComponente) VALUES
+(1, 1, 1), 
+(2, 1, 2),
+(3, 1, 3), 
+(4, 1, 4); 
 
-INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMin, limiteMax) VALUES
-(1, 1, 1, 10.0, 90.0),
-(3, 1, 1, 0.0, 85.0);
+INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
+(1, 1, 1, 95.0), -- Alerta Crítico para CPU > 95%
+(1, 1, 2, 85.0); -- Alerta Importante para CPU > 85%
 
-INSERT INTO plano (fkEmpresa, tipoPlano, valorPlano) VALUES
-(1, 2, 350);
+INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
+(2, 1, 1, 90.0), -- Alerta Crítico para RAM > 90%
+(2, 1, 2, 80.0); -- Alerta Importante para RAM > 80%
 
-INSERT INTO statusEtapas (fkEmpresa, estagioAprovacao, statusPagamento) VALUES
-(1, 1, 1);
+INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
+(3, 1, 1, 98.0), -- Alerta Crítico para Disco > 98%
+(3, 1, 2, 90.0); -- Alerta Importante para Disco > 90%
