@@ -1,14 +1,10 @@
 CREATE DATABASE IF NOT EXISTS upfinity;
 USE upfinity;
 
--- Tabela TipoUsuario
-
 CREATE TABLE IF NOT EXISTS TipoUsuario (
     idTipoUsuario INT PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(45) NOT NULL
 );
-
--- Tabela TipoComponente
 
 CREATE TABLE IF NOT EXISTS TipoComponente (
     idTipoComponente INT PRIMARY KEY AUTO_INCREMENT,
@@ -16,8 +12,6 @@ CREATE TABLE IF NOT EXISTS TipoComponente (
     unidadeMedida VARCHAR(45) NOT NULL,
     processos VARCHAR(45)
 );
-
--- Tabela Endereco
 
 CREATE TABLE IF NOT EXISTS Endereco (
     idEndereco INT PRIMARY KEY AUTO_INCREMENT,
@@ -30,15 +24,11 @@ CREATE TABLE IF NOT EXISTS Endereco (
 	complemento VARCHAR(100)
 );
 
--- Tabela TipoAlerta
-
 CREATE TABLE IF NOT EXISTS TipoAlerta (
     idTipoAlerta INT PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(100) NOT NULL,
     nivel INT NOT NULL
 );
-
--- Tabela Plano
 
 CREATE TABLE IF NOT EXISTS Plano (
 	idPlano INT PRIMARY KEY AUTO_INCREMENT,
@@ -47,8 +37,6 @@ CREATE TABLE IF NOT EXISTS Plano (
     maxATMs INT NOT NULL,
     valorPlano DOUBLE NOT NULL
 );
-
--- Tabela Empresa
 
 CREATE TABLE IF NOT EXISTS Empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
@@ -61,8 +49,6 @@ CREATE TABLE IF NOT EXISTS Empresa (
     FOREIGN KEY (fkPlano) REFERENCES Plano(idPlano)
 );
 
--- Tabela Usuario
-
 CREATE TABLE IF NOT EXISTS Usuario (
     idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     fkTipoUsuario INT NOT NULL,
@@ -74,8 +60,6 @@ CREATE TABLE IF NOT EXISTS Usuario (
     FOREIGN KEY (fkTipoUsuario) REFERENCES TipoUsuario(idTipoUsuario),
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
-
--- Tabela Atm
 
 CREATE TABLE IF NOT EXISTS Atm (
     idAtm INT PRIMARY KEY AUTO_INCREMENT,
@@ -90,8 +74,6 @@ CREATE TABLE IF NOT EXISTS Atm (
     FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
 );
 
--- Tabela Componente
-
 CREATE TABLE IF NOT EXISTS Componente (
     idComponente INT NOT NULL,
     fkAtm INT NOT NULL,
@@ -101,17 +83,14 @@ CREATE TABLE IF NOT EXISTS Componente (
     FOREIGN KEY (fkTipoComponente) REFERENCES TipoComponente(idTipoComponente)
 );
 
--- Tabela Captura
-
 CREATE TABLE IF NOT EXISTS Captura (
     idCaptura INT PRIMARY KEY AUTO_INCREMENT,
     fkComponente INT NOT NULL,
+	fkAtm INT NOT NULL,
     valor DOUBLE NOT NULL,
     horario DATETIME NOT NULL,
-    FOREIGN KEY (fkComponente) REFERENCES Componente(idComponente)
+    FOREIGN KEY (fkComponente, fkAtm) REFERENCES Componente(idComponente, fkAtm)
 );
-
--- Tabela Alerta
 
 CREATE TABLE IF NOT EXISTS Alerta (
     idAlerta INT PRIMARY KEY AUTO_INCREMENT,
