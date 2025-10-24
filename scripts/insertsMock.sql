@@ -5,9 +5,9 @@ INSERT INTO Plano (nome, descricao, maxATMs, valorPlano) VALUES
 ('Premium', 'Monitoramento ilimitado com suporte 24/7', 1000, 999.90);
 
 INSERT INTO TipoUsuario (descricao) VALUES
-('Administrador Global'),
+('Suporte UpFinity'),
 ('Administrador Empresa'),
-('Técnico');
+('Analista');
 
 INSERT INTO TipoComponente (nome, unidadeMedida) VALUES
 ('CPU', '%'),

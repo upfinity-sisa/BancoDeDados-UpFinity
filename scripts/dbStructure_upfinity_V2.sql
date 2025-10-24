@@ -43,8 +43,8 @@ CREATE TABLE IF NOT EXISTS Empresa (
     fkPlano INT,
     razaoSocial VARCHAR(45) NOT NULL,
 	CNPJ CHAR(14) NOT NULL,
-    statusAprovacao INT NOT NULL,
-    statusPagamento BOOLEAN NOT NULL,
+    statusAprovacao INT NOT NULL DEFAULT 0,
+    statusPagamento BOOLEAN NOT NULL DEFAULT FALSE,
     nomeFantasia VARCHAR(45),
     FOREIGN KEY (fkPlano) REFERENCES Plano(idPlano)
 );
