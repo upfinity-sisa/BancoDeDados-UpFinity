@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS Empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
     fkPlano INT,
     razaoSocial VARCHAR(45) NOT NULL,
-	CNPJ CHAR(14) NOT NULL,
+	CNPJ CHAR(14) NOT NULL UNIQUE,
     statusAprovacao INT NOT NULL DEFAULT 0,
     statusPagamento BOOLEAN NOT NULL DEFAULT FALSE,
     nomeFantasia VARCHAR(45),
@@ -65,11 +65,11 @@ CREATE TABLE IF NOT EXISTS Atm (
     idAtm INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT NOT NULL,
     fkEndereco INT NOT NULL,
-    numeracao INT NOT NULL,
+    numeracao INT NOT NULL UNIQUE,
     latitude DOUBLE NOT NULL,
     longitude DOUBLE NOT NULL,
-    statusEstado INT NOT NULL, -- 0 - desligado, 1 - ligado, 2 - manutenção
-    statusMonitoramento INT NOT NULL,
+    statusEstado INT NOT NULL, -- 0 -> desligado, 1 -> ligado, 2 -> manutenção
+    statusMonitoramento INT NOT NULL, -- 0 -> Normal, 1 -> Moderado, 2 -> Grave
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
     FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
 );
