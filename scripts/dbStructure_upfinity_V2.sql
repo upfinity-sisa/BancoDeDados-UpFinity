@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS Plano (
     nome VARCHAR(45) NOT NULL,
     descricao VARCHAR(45) NOT NULL,
     maxATMs INT NOT NULL,
-    valorPlano DOUBLE NOT NULL
+    valorPlano DOUBLE(10, 2) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Empresa (

@@ -1,8 +1,9 @@
 USE upfinity;
 
 INSERT INTO Plano (nome, descricao, maxATMs, valorPlano) VALUES
-('Básico', 'Monitoramento de até 10 ATMs', 10, 199.90),
-('Premium', 'Monitoramento ilimitado com suporte 24/7', 1000, 999.90);
+('Básico', 'Monitoramento de até 12 ATMs', 12, 4790.00),
+('Médio', 'Monitoramento de até 30 ATMs', 30, 10749.00),
+('Avançado', 'Monitoramento de até 50 ATMs', 50, 20649.00);
 
 INSERT INTO TipoUsuario (descricao) VALUES
 ('Suporte UpFinity'),
@@ -24,11 +25,12 @@ INSERT INTO Endereco (logradouro, num, bairro, cidade, UF, CEP, complemento) VAL
 ('Avenida Rio Branco', '250', 'Centro', 'Rio de Janeiro', 'RJ', '20040009', 'Andar 15, Bloco B');
 
 INSERT INTO Empresa (fkPlano, razaoSocial, CNPJ, statusAprovacao, statusPagamento, nomeFantasia) VALUES
-(1, 'Banco Digital Exemplo SA', '12345678000190', 1, TRUE, 'Banco Exemplo');
+(1, 'Banco Digital Exemplo SA', '12345678000190', 1, TRUE, 'Banco Exemplo'),
+(null, 'Banco Digital Exemplo XY', '12345678000110', 1, FALSE, 'Banco Exemplo');
 
 INSERT INTO Usuario (fkTipoUsuario, fkEmpresa, nome, CPF, email, senha) VALUES
 (2, 1, 'João da Silva', '11122233344', 'joao.silva@bancoexemplo.com', 'senhaForte123'),
-(3, 1, 'Maria Oliveira', '55566677788', 'maria.oliveira@bancoexemplo.com', 'outraSenha456');
+(3, 2, 'Maria Oliveira', '55566677788', 'maria.oliveira@bancoexemplo.com', 'outraSenha456');
 
 INSERT INTO Atm (fkEmpresa, fkEndereco, numeracao, latitude, longitude, statusEstado, statusMonitoramento) VALUES
 (1, 1, 12345, -23.5613, -46.6565, 1, 1),
