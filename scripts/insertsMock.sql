@@ -7,7 +7,7 @@ INSERT INTO Plano (nome, descricao, maxATMs, valorPlano) VALUES
 
 INSERT INTO TipoUsuario (descricao) VALUES
 ('Suporte UpFinity'),
-('Administrador Empresa'),
+('Administrador'),
 ('Analista');
 
 INSERT INTO TipoComponente (nome, unidadeMedida) VALUES
@@ -32,9 +32,9 @@ INSERT INTO Usuario (fkTipoUsuario, fkEmpresa, nome, CPF, email, senha) VALUES
 (2, 1, 'João da Silva', '11122233344', 'joao.silva@bancoexemplo.com', 'senhaForte123'),
 (3, 2, 'Maria Oliveira', '55566677788', 'maria.oliveira@bancoexemplo.com', 'outraSenha456');
 
-INSERT INTO Atm (fkEmpresa, fkEndereco, numeracao, latitude, longitude, statusEstado, statusMonitoramento) VALUES
-(1, 1, 12345, -23.5613, -46.6565, 1, 1),
-(1, 2, 67890, -22.9035, -43.2096, 3, 2);
+INSERT INTO Atm (fkEmpresa, fkEndereco, numeracao, IP, statusEstado, statusMonitoramento) VALUES
+(1, 1, 12345, 123365907822356, 1, 1),
+(1, 2, 67890, 901832106892356, 3, 2);
 
 INSERT INTO Componente (idComponente, fkAtm, fkTipoComponente) VALUES
 (1, 1, 1), 
