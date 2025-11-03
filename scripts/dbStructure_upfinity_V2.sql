@@ -40,13 +40,15 @@ CREATE TABLE IF NOT EXISTS Plano (
 
 CREATE TABLE IF NOT EXISTS Empresa (
     idEmpresa INT PRIMARY KEY AUTO_INCREMENT,
+    fkEndereco INT,
     fkPlano INT,
     razaoSocial VARCHAR(45) NOT NULL,
 	CNPJ CHAR(14) NOT NULL UNIQUE,
     statusAprovacao INT NOT NULL DEFAULT 0,
     statusPagamento BOOLEAN NOT NULL DEFAULT FALSE,
     nomeFantasia VARCHAR(45),
-    FOREIGN KEY (fkPlano) REFERENCES Plano(idPlano)
+    FOREIGN KEY (fkPlano) REFERENCES Plano(idPlano),
+    FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
 );
 
 CREATE TABLE IF NOT EXISTS Usuario (
@@ -64,13 +66,11 @@ CREATE TABLE IF NOT EXISTS Usuario (
 CREATE TABLE IF NOT EXISTS Atm (
     idAtm INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT NOT NULL,
-    fkEndereco INT NOT NULL,
     numeracao INT NOT NULL,
     IP CHAR(15) NOT NULL,
     statusEstado INT NOT NULL, -- 0 -> desligado, 1 -> ligado, 2 -> manutenção
     statusMonitoramento INT NOT NULL, -- 0 -> Normal, 1 -> Moderado, 2 -> Grave
-    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
-    FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
+    FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
 CREATE TABLE IF NOT EXISTS Componente (
@@ -134,3 +134,5 @@ CREATE TABLE IF NOT EXISTS Parametro (
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
     FOREIGN KEY (fkTipoAlerta) REFERENCES TipoAlerta(idTipoAlerta)
 );
+
+desc Atm;
