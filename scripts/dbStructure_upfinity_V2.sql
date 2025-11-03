@@ -134,5 +134,3 @@ CREATE TABLE IF NOT EXISTS Parametro (
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
     FOREIGN KEY (fkTipoAlerta) REFERENCES TipoAlerta(idTipoAlerta)
 );
-
-desc Atm;

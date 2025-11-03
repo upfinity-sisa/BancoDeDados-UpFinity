@@ -33,8 +33,8 @@ INSERT INTO Usuario (fkTipoUsuario, fkEmpresa, nome, CPF, email, senha) VALUES
 (3, 2, 'Maria Oliveira', '55566677788', 'maria.oliveira@bancoexemplo.com', 'outraSenha456');
 
 INSERT INTO Atm (fkEmpresa, numeracao, IP, statusEstado, statusMonitoramento) VALUES
-(1, 12345, 123365907822356, 1, 1),
-(1, 67890, 901832106892356, 3, 2);
+(1, 1, 123365907822356, 1, 1),
+(1, 2, 901832106892356, 3, 2);
 
 INSERT INTO Componente (idComponente, fkAtm, fkTipoComponente) VALUES
 (1, 1, 1), 
