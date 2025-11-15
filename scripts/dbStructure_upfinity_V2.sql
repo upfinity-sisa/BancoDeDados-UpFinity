@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS Captura (
     fkComponente INT NOT NULL,
 	fkAtm INT NOT NULL,
     valor DOUBLE NOT NULL,
-    horario DATETIME NOT NULL,
+    horario TIMESTAMP NOT NULL,
     FOREIGN KEY (fkComponente, fkAtm) REFERENCES Componente(idComponente, fkAtm)
 );
 
