@@ -25,7 +25,7 @@ CHECK (categoria in('arquivo', 'conexao', 'processo'))
 CREATE TABLE IF NOT EXISTS AlertaSeguranca (
 idAlertaSeguranca INT PRIMARY KEY AUTO_INCREMENT,
 categoria VARCHAR(45),
-mensagem VARCHAR(60),
+mensagem VARCHAR(200),
 horario DATETIME,
 CHECK (categoria in('arquivo', 'conexao', 'invasao', 'processo'))
 );
@@ -56,7 +56,8 @@ FOREIGN KEY (fkAlertaSeguranca) REFERENCES AlertaSeguranca(idAlertaSeguranca)
 
 CREATE TABLE IF NOT EXISTS ProcessoPrivilegiado (
 idProcessoPrivilegiado INT AUTO_INCREMENT,
-nome VARCHAR(60),
+nome VARCHAR(200),
+caminho VARCHAR(200),
 horario DATETIME,
 fkSeguranca INT, 
 fkAlertaSeguranca INT,
