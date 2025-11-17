@@ -33,7 +33,7 @@ CHECK (categoria in('arquivo', 'conexao', 'invasao', 'processo'))
 CREATE TABLE IF NOT EXISTS Invasao (
 idInvasao INT AUTO_INCREMENT,
 horarioCaptura DATETIME,
-horaroiInvasao DATETIME,
+horarioInvasao DATETIME,
 IP CHAR(15),
 fkSeguranca INT,
 fkAlertaSeguranca INT,
