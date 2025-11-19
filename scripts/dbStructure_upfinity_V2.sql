@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS Empresa (
     statusAprovacao INT NOT NULL DEFAULT 0,
     statusPagamento BOOLEAN NOT NULL DEFAULT FALSE,
     nomeFantasia VARCHAR(45),
+    idSlack INT UNIQUE,
     FOREIGN KEY (fkPlano) REFERENCES Plano(idPlano),
     FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
 );
