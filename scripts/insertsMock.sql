@@ -53,3 +53,6 @@ INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VAL
 INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
 (3, 1, 1, 98.0), -- Alerta Crítico para Disco > 98%
 (3, 1, 2, 90.0); -- Alerta Importante para Disco > 90%
+
+INSERT INTO Empresa (razaoSocial, CNPJ, idSlack) VALUES
+('Banco do Brasil ','12345678000199','C09UCNHCEAD');
