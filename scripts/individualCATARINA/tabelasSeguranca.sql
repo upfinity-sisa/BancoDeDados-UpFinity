@@ -8,7 +8,7 @@ categoria VARCHAR(45),
 salvamento BOOLEAN,
 fkAtm INT,
 FOREIGN KEY (fkAtm) references Atm(idAtm),
-CHECK (categoria in('arquivo', 'conexao', 'invasao', 'processo'))
+CHECK (categoria in('arquivo', 'conexao', 'invasao'))
 );
 
 CREATE TABLE IF NOT EXISTS ItemSalvo (
@@ -19,7 +19,7 @@ conteudo02 VARCHAR(200),
 fkSeguranca INT,
 PRIMARY KEY (idItemSalvo, fkSeguranca),
 FOREIGN KEY (fkSeguranca) REFERENCES Seguranca(idSeguranca),
-CHECK (categoria in('arquivo', 'conexao', 'processo'))
+CHECK (categoria in('arquivo', 'conexao'))
 );
 
 CREATE TABLE IF NOT EXISTS AlertaSeguranca (
@@ -27,7 +27,7 @@ idAlertaSeguranca INT PRIMARY KEY AUTO_INCREMENT,
 categoria VARCHAR(45),
 mensagem VARCHAR(200),
 horario DATETIME,
-CHECK (categoria in('arquivo', 'conexao', 'invasao', 'processo'))
+CHECK (categoria in('arquivo', 'conexao', 'invasao'))
 );
 
 CREATE TABLE IF NOT EXISTS Invasao (
@@ -50,18 +50,6 @@ horario DATETIME,
 fkSeguranca INT,
 fkAlertaSeguranca INT,
 PRIMARY KEY (idConexaoAberta, fkSeguranca),
-FOREIGN KEY (fkSeguranca) REFERENCES Seguranca(idSeguranca),
-FOREIGN KEY (fkAlertaSeguranca) REFERENCES AlertaSeguranca(idAlertaSeguranca)
-);
-
-CREATE TABLE IF NOT EXISTS ProcessoPrivilegiado (
-idProcessoPrivilegiado INT AUTO_INCREMENT,
-nome VARCHAR(200),
-caminho VARCHAR(200),
-horario DATETIME,
-fkSeguranca INT, 
-fkAlertaSeguranca INT,
-PRIMARY KEY (idProcessoPrivilegiado, fkSeguranca),
 FOREIGN KEY (fkSeguranca) REFERENCES Seguranca(idSeguranca),
 FOREIGN KEY (fkAlertaSeguranca) REFERENCES AlertaSeguranca(idAlertaSeguranca)
 );
