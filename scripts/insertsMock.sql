@@ -34,13 +34,15 @@ INSERT INTO Usuario (fkTipoUsuario, fkEmpresa, nome, CPF, email, senha) VALUES
 
 INSERT INTO Atm (fkEmpresa, numeracao, IP, statusEstado, statusMonitoramento) VALUES
 (1, 1, 123365907822356, 1, 1),
-(1, 2, 901832106892356, 3, 2);
+(1, 2, 901832106892356, 3, 2),
+(1, 3, "169.254.238.99", 3, 2),
+(2, 4, null , 1, 0);
 
 INSERT INTO Componente (idComponente, fkAtm, fkTipoComponente) VALUES
 (1, 1, 1), 
 (2, 1, 2),
 (3, 1, 3), 
-(4, 1, 4); 
+(4, 1, 4);
 
 INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
 (1, 1, 1, 95.0), -- Alerta Crítico para CPU > 95%
@@ -53,3 +55,11 @@ INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VAL
 INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
 (3, 1, 1, 98.0), -- Alerta Crítico para Disco > 98%
 (3, 1, 2, 90.0); -- Alerta Importante para Disco > 90%
+
+UPDATE Empresa 
+SET idSlack = 'C09UCNHCEAD'
+WHERE idEmpresa = 2;
+
+-- BRENO
+-- UPDATE Atm SET IP = '' WHERE fkEmpresa = 2;
+
