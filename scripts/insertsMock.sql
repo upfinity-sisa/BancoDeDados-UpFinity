@@ -56,9 +56,8 @@ INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VAL
 (3, 1, 1, 98.0), -- Alerta Crítico para Disco > 98%
 (3, 1, 2, 90.0); -- Alerta Importante para Disco > 90%
 
-UPDATE Empresa 
-SET idSlack = 'C09UCNHCEAD'
-WHERE idEmpresa = 2;
+-- BRENO
+-- UPDATE Empresa SET idSlack = 'C09UCNHCEAD' WHERE idEmpresa = 2;
 
 -- BRENO
 -- UPDATE Atm SET IP = '' WHERE fkEmpresa = 2;

@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS Empresa (
     statusAprovacao INT NOT NULL DEFAULT 0,
     statusPagamento BOOLEAN NOT NULL DEFAULT FALSE,
     nomeFantasia VARCHAR(45),
-    idSlack VARCHAR(45) UNIQUE,
+    idSlack VARCHAR(45),
     FOREIGN KEY (fkPlano) REFERENCES Plano(idPlano),
     FOREIGN KEY (fkEndereco) REFERENCES Endereco(idEndereco)
 );
@@ -135,3 +135,13 @@ CREATE TABLE IF NOT EXISTS Parametro (
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa),
     FOREIGN KEY (fkTipoAlerta) REFERENCES TipoAlerta(idTipoAlerta)
 );
+
+CREATE TABLE IF NOT EXISTS LogAcesso (
+	idLogAcesso INT PRIMARY KEY AUTO_INCREMENT,
+    fkUsuario INT NOT NULL,
+    stats BOOLEAN,
+    email VARCHAR(100),
+    dataHora DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
+);
+
