@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS Alerta (
     idAlerta INT PRIMARY KEY AUTO_INCREMENT,
     fkTipoAlerta INT NOT NULL,
     fkCaptura INT NOT NULL UNIQUE,
+    statusAlerta INT DEFAULT 1, -- 1 Em Aberto, 0 Resolvido
     FOREIGN KEY (fkTipoAlerta) REFERENCES TipoAlerta(idTipoAlerta),
     FOREIGN KEY (fkCaptura) REFERENCES Captura(idCaptura)
 );
