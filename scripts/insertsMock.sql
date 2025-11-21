@@ -16,6 +16,10 @@ INSERT INTO TipoComponente (nome, unidadeMedida) VALUES
 ('Disco', '%'),
 ('Placa de rede', 'mb');
 
+INSERT INTO TipoComponente (nome, unidadeMedida, processos) VALUES
+('CPU', 'ºC', 'Temperatura'), 
+('CPU', 'MHz', 'Frequência');
+
 INSERT INTO TipoAlerta (descricao, nivel) VALUES
 ('Crítico', 1),
 ('Moderado', 2);
@@ -42,7 +46,9 @@ INSERT INTO Componente (idComponente, fkAtm, fkTipoComponente) VALUES
 (1, 1, 1), 
 (2, 1, 2),
 (3, 1, 3), 
-(4, 1, 4);
+(4, 1, 4),
+(5, 4, 5),
+(6, 4, 6);
 
 INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
 (1, 1, 1, 95.0), -- Alerta Crítico para CPU > 95%
@@ -62,14 +68,9 @@ INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VAL
 (3, 2, 1, 98.0), -- Alerta Crítico para Disco > 98%
 (3, 2, 2, 90.0); -- Alerta Importante para Disco > 90%
 
-
--- insert tipocomponente dash individual brenokas
-insert TipoComponente (nome, unidadeMedida, processos) values ('CPU', 'ºC', 'Temperatura'), ('CPU', 'MHz', 'Frequência');
-
+-- BRENO
+UPDATE Empresa SET idSlack = 'C09UCNHCEAD' WHERE idEmpresa = 2;
 
 -- BRENO
--- UPDATE Empresa SET idSlack = 'C09UCNHCEAD' WHERE idEmpresa = 2;
-
--- BRENO
--- UPDATE Atm SET IP = '' WHERE fkEmpresa = 2;
+UPDATE Atm SET IP = '10.18.33.139' WHERE fkEmpresa = 2;
 
