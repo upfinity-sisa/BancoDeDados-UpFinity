@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS Atm (
     idAtm INT PRIMARY KEY AUTO_INCREMENT,
     fkEmpresa INT NOT NULL,
     numeracao INT NOT NULL,
-    IP CHAR(15),
+    IP CHAR(15) NOT NULL,
     statusEstado INT NOT NULL, -- 0 -> desligado, 1 -> ligado, 2 -> manutenção
     statusMonitoramento INT NOT NULL, -- 0 -> Normal, 1 -> Moderado, 2 -> Grave
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
