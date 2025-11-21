@@ -46,15 +46,22 @@ INSERT INTO Componente (idComponente, fkAtm, fkTipoComponente) VALUES
 
 INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
 (1, 1, 1, 95.0), -- Alerta Crítico para CPU > 95%
-(1, 1, 2, 85.0); -- Alerta Importante para CPU > 85%
+(1, 1, 2, 85.0), -- Alerta Importante para CPU > 85%
+(1, 2, 1, 95.0), -- Alerta Crítico para CPU > 95%
+(1, 2, 2, 85.0); -- Alerta Importante para CPU > 85%
 
 INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
 (2, 1, 1, 90.0), -- Alerta Crítico para RAM > 90%
-(2, 1, 2, 80.0); -- Alerta Importante para RAM > 80%
+(2, 1, 2, 80.0), -- Alerta Importante para RAM > 80%
+(2, 2, 1, 90.0), -- Alerta Crítico para RAM > 90%
+(2, 2, 2, 80.0); -- Alerta Importante para RAM > 80%
 
 INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
 (3, 1, 1, 98.0), -- Alerta Crítico para Disco > 98%
-(3, 1, 2, 90.0); -- Alerta Importante para Disco > 90%
+(3, 1, 2, 90.0), -- Alerta Importante para Disco > 90%
+(3, 2, 1, 98.0), -- Alerta Crítico para Disco > 98%
+(3, 2, 2, 90.0); -- Alerta Importante para Disco > 90%
+
 
 -- insert tipocomponente dash individual brenokas
 insert TipoComponente (nome, unidadeMedida, processos) values ('CPU', 'ºC', 'Temperatura'), ('CPU', 'MHz', 'Frequência');
