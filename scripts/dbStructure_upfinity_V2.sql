@@ -92,6 +92,18 @@ CREATE TABLE IF NOT EXISTS Captura (
     FOREIGN KEY (fkComponente, fkAtm) REFERENCES Componente(idComponente, fkAtm)
 );
 
+CREATE TABLE IF NOT EXISTS CapturaRede (
+idCapturaRede INT PRIMARY KEY AUTO_INCREMENT,
+fkComponente INT NOT NULL,
+FkAtm INT NOT NULL,
+nomeRede VARCHAR(45),
+MBRecebidos DOUBLE NOT NULL,
+pacotesRecebidos INT NOT NULL,
+pacotesEnviados INT NOT NULL,
+horario TIMESTAMP NOT NULL,
+FOREIGN KEY (fkComponente, fkAtm) REFERENCES Componente(idComponente, fkAtm)
+);
+
 CREATE TABLE IF NOT EXISTS Alerta (
     idAlerta INT PRIMARY KEY AUTO_INCREMENT,
     fkTipoAlerta INT NOT NULL,
