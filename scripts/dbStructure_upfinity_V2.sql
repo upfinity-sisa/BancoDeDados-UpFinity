@@ -147,3 +147,4 @@ CREATE TABLE IF NOT EXISTS LogAcesso (
     FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
 );
 
+
