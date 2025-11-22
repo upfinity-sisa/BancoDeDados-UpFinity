@@ -68,6 +68,11 @@ INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VAL
 (3, 2, 1, 98.0), -- Alerta Crítico para Disco > 98%
 (3, 2, 2, 90.0); -- Alerta Importante para Disco > 90%
 
+INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
+(5, 2, 1, 80.0), -- Alerta crítico para temperatura da CPU > 80.0C
+(5, 2, 2, 70.0); -- Alerta importante para temperatura da CPU > 70.0C
+
+
 -- BRENO
 -- UPDATE Empresa SET idSlack = 'C09UCNHCEAD' WHERE idEmpresa = 2;
 
