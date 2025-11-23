@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS Seguranca (
 idSeguranca INT PRIMARY KEY,
 categoria VARCHAR(45),
 salvamento BOOLEAN,
+criadoEm DATETIME,
 fkAtm INT,
 FOREIGN KEY (fkAtm) references Atm(idAtm),
 CHECK (categoria in('arquivo', 'conexao', 'invasao'))

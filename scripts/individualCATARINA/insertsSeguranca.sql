@@ -1,9 +1,9 @@
 use upfinity;
 
 insert into Seguranca values
-(1, 'arquivo', 0, 1),
-(2, 'conexao', 0, 1),
-(3, 'invasao', null, 1);
+(1, 'arquivo', 0, now(), 1),
+(2, 'conexao', 0, now(), 1),
+(3, 'invasao', null, now(), 1);
 
 #semana 1
 insert into AlertaSeguranca values
@@ -11,8 +11,8 @@ insert into AlertaSeguranca values
 (2, 'arquivo', 'O hash do arquivo /bin/netstats foi alterado', '2025-11-20 00:00:05');
 
 insert into ArquivoCritico (horario, possuiAlerta, fkSeguranca, fkAlertaSeguranca) values
-('2025-11-20 00:00:00', 1, 3, 1),
-('2025-11-20 00:00:05', 1, 3, 2);
+('2025-11-20 00:00:00', 1, 1, 1),
+('2025-11-20 00:00:05', 1, 1, 2);
 
 #semana2
 insert into AlertaSeguranca values
@@ -21,9 +21,9 @@ insert into AlertaSeguranca values
 (5, 'arquivo', 'O hash do arquivo /bin/netstats foi alterado', '2025-11-13 00:00:10');
 
 insert into ArquivoCritico (horario, possuiAlerta, fkSeguranca, fkAlertaSeguranca) values
-('2025-11-13 00:00:00', 1, 3, 3),
-('2025-11-13 00:00:05', 1, 3, 4),
-('2025-11-13 00:00:10', 1, 3, 5);
+('2025-11-13 00:00:00', 1, 1, 3),
+('2025-11-13 00:00:05', 1, 1, 4),
+('2025-11-13 00:00:10', 1, 1, 5);
 
 #semana3
 insert into AlertaSeguranca values
@@ -35,12 +35,12 @@ insert into AlertaSeguranca values
 (11, 'arquivo', 'O hash do arquivo /bin/netstats foi alterado', '2025-11-06 00:00:15');
 
 insert into ArquivoCritico (horario, possuiAlerta, fkSeguranca, fkAlertaSeguranca) values
-('2025-11-06 00:00:00', 1, 3, 6),
-('2025-11-06 00:00:05', 1, 3, 7),
-('2025-11-06 00:00:10', 1, 3, 8),
-('2025-11-06 00:00:15', 1, 3, 9),
-('2025-11-06 00:00:10', 1, 3, 10),
-('2025-11-06 00:00:15', 1, 3, 11);
+('2025-11-06 00:00:00', 1, 1, 6),
+('2025-11-06 00:00:05', 1, 1, 7),
+('2025-11-06 00:00:10', 1, 1, 8),
+('2025-11-06 00:00:15', 1, 1, 9),
+('2025-11-06 00:00:10', 1, 1, 10),
+('2025-11-06 00:00:15', 1, 1, 11);
 
 #semana4
 insert into AlertaSeguranca values
@@ -51,11 +51,11 @@ insert into AlertaSeguranca values
 (16, 'arquivo', 'O hash do arquivo /bin/netstats foi alterado', '2025-10-30 00:00:15');
 
 insert into ArquivoCritico (horario, possuiAlerta, fkSeguranca, fkAlertaSeguranca) values
-('2025-10-30 00:00:00', 1, 3, 12),
-('2025-10-30 00:00:00', 1, 3, 13),
-('2025-10-30 00:00:05', 1, 3, 14),
-('2025-10-30 00:00:10', 1, 3, 15),
-('2025-10-30 00:00:15', 1, 3, 16);
+('2025-10-30 00:00:00', 1, 1, 12),
+('2025-10-30 00:00:00', 1, 1, 13),
+('2025-10-30 00:00:05', 1, 1, 14),
+('2025-10-30 00:00:10', 1, 1, 15),
+('2025-10-30 00:00:15', 1, 1, 16);
 
 #semana5
 insert into AlertaSeguranca values
@@ -65,10 +65,10 @@ insert into AlertaSeguranca values
 (20, 'arquivo', 'O hash do arquivo /bin/netstats foi alterado', '2025-10-23 00:00:15');
 
 insert into ArquivoCritico (horario, possuiAlerta, fkSeguranca, fkAlertaSeguranca) values
-('2025-10-23 00:00:00', 1, 3, 17),
-('2025-10-23 00:00:05', 1, 3, 18),
-('2025-10-23 00:00:10', 1, 3, 19),
-('2025-10-23 00:00:15', 1, 3, 20);
+('2025-10-23 00:00:00', 1, 1, 17),
+('2025-10-23 00:00:05', 1, 1, 18),
+('2025-10-23 00:00:10', 1, 1, 19),
+('2025-10-23 00:00:15', 1, 1, 20);
 
 
 #semana6
@@ -79,10 +79,10 @@ insert into AlertaSeguranca values
 (24, 'arquivo', 'O hash do arquivo /bin/netstats foi alterado', '2025-10-16 00:00:15');
 
 insert into ArquivoCritico (horario, possuiAlerta, fkSeguranca, fkAlertaSeguranca) values
-('2025-10-16 00:00:00', 1, 3, 21),
-('2025-10-16 00:00:05', 1, 3, 22),
-('2025-10-16 00:00:10', 1, 3, 23),
-('2025-10-16 00:00:15', 1, 3, 24);
+('2025-10-16 00:00:00', 1, 1, 21),
+('2025-10-16 00:00:05', 1, 1, 22),
+('2025-10-16 00:00:10', 1, 1, 23),
+('2025-10-16 00:00:15', 1, 1, 24);
 
 #semana7
 insert into AlertaSeguranca values
@@ -91,9 +91,9 @@ insert into AlertaSeguranca values
 (27, 'arquivo', 'O hash do arquivo /bin/netstats foi alterado', '2025-10-09 00:00:10');
 
 insert into ArquivoCritico (horario, possuiAlerta, fkSeguranca, fkAlertaSeguranca) values
-('2025-10-09 00:00:00', 1, 3, 25),
-('2025-10-09 00:00:05', 1, 3, 26),
-('2025-10-09 00:00:10', 1, 3, 27);
+('2025-10-09 00:00:00', 1, 1, 25),
+('2025-10-09 00:00:05', 1, 1, 26),
+('2025-10-09 00:00:10', 1, 1, 27);
 
 #semana8
 insert into AlertaSeguranca values
@@ -101,5 +101,5 @@ insert into AlertaSeguranca values
 (29, 'arquivo', 'O hash do arquivo /bin/netstats foi alterado', '2025-10-02 00:00:05');
 
 insert into ArquivoCritico (horario, possuiAlerta, fkSeguranca, fkAlertaSeguranca) values
-('2025-10-02 00:00:00', 1, 3, 28),
-('2025-10-02 00:00:05', 1, 3, 29);
+('2025-10-02 00:00:00', 1, 1, 28),
+('2025-10-02 00:00:05', 1, 1, 29);
