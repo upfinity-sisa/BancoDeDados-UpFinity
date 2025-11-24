@@ -91,7 +91,7 @@ JOIN (
 JOIN Componente co ON c.fkComponente = co.idComponente AND c.fkAtm = co.fkAtm
 JOIN Atm atm ON co.fkAtm = atm.idAtm
 JOIN TipoComponente tp ON co.fkTipoComponente = tp.idTipoComponente
-WHERE tp.idTipoComponente IN (1, 2, 3);
+WHERE tp.idTipoComponente IN (1, 2, 3, 4);
 
 CREATE OR REPLACE VIEW vw_visao_geral AS
 SELECT 
@@ -99,7 +99,8 @@ SELECT
     numeracao,
     MAX(CASE WHEN idTipoComponente = 1 THEN valor END) AS uso_cpu,
     MAX(CASE WHEN idTipoComponente = 2 THEN valor END) AS uso_ram,
-    MAX(CASE WHEN idTipoComponente = 3 THEN valor END) AS uso_disco
+    MAX(CASE WHEN idTipoComponente = 3 THEN valor END) AS uso_disco,
+    MAX(CASE WHEN idTipoComponente = 4 THEN valor END) AS conexao
 FROM vw_ultimas_leituras
 GROUP BY fkEmpresa, numeracao;
 
