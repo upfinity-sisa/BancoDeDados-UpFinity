@@ -77,7 +77,8 @@ SELECT
     atm.numeracao,
     c.valor,
     tp.nome,
-    tp.idTipoComponente
+    tp.idTipoComponente,
+    atm.fkEmpresa
 FROM Captura c
 JOIN (
     SELECT fkAtm, fkComponente, MAX(horario) as max_horario
@@ -91,7 +92,6 @@ JOIN Componente co ON c.fkComponente = co.idComponente AND c.fkAtm = co.fkAtm
 JOIN Atm atm ON co.fkAtm = atm.idAtm
 JOIN TipoComponente tp ON co.fkTipoComponente = tp.idTipoComponente
 WHERE tp.idTipoComponente IN (1, 2, 3);
-
 
 -- BRENO
 -- UPDATE Empresa SET idSlack = 'C09UCNHCEAD' WHERE idEmpresa = 2;
