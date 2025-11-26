@@ -160,4 +160,52 @@ CREATE TABLE IF NOT EXISTS LogAcesso (
     FOREIGN KEY (fkUsuario) REFERENCES Usuario(idUsuario)
 );
 
+-- Views
+CREATE OR REPLACE VIEW vw_ultimas_leituras AS
+SELECT 
+    atm.numeracao,
+    c.valor,
+    tp.nome,
+    tp.idTipoComponente,
+    atm.fkEmpresa
+FROM Captura c
+JOIN (
+    SELECT fkAtm, fkComponente, MAX(horario) as max_horario
+    FROM Captura
+    GROUP BY fkAtm, fkComponente
+) latest 
+    ON c.fkAtm = latest.fkAtm 
+    AND c.fkComponente = latest.fkComponente 
+    AND c.horario = latest.max_horario
+JOIN Componente co ON c.fkComponente = co.idComponente AND c.fkAtm = co.fkAtm
+JOIN Atm atm ON co.fkAtm = atm.idAtm
+JOIN TipoComponente tp ON co.fkTipoComponente = tp.idTipoComponente
+WHERE tp.idTipoComponente IN (1, 2, 3, 4);
 
+CREATE OR REPLACE VIEW vw_visao_geral AS
+SELECT 
+    a.fkEmpresa,
+    a.numeracao,
+    a.statusMonitoramento,
+    MAX(CASE WHEN v.idTipoComponente = 1 THEN v.valor END) AS uso_cpu,
+    MAX(CASE WHEN v.idTipoComponente = 2 THEN v.valor END) AS uso_ram,
+    MAX(CASE WHEN v.idTipoComponente = 3 THEN v.valor END) AS uso_disco,
+    MAX(CASE WHEN v.idTipoComponente = 4 THEN v.valor END) AS conexao
+FROM Atm a
+LEFT JOIN vw_ultimas_leituras v 
+    ON a.numeracao = v.numeracao AND a.fkEmpresa = v.fkEmpresa
+GROUP BY a.idAtm, a.fkEmpresa, a.numeracao;
+
+CREATE OR REPLACE VIEW vw_visao_geral AS
+SELECT 
+    a.fkEmpresa,
+    a.numeracao,
+    a.statusMonitoramento,
+    IFNULL(MAX(CASE WHEN v.idTipoComponente = 1 THEN v.valor END), 0) AS uso_cpu,
+    IFNULL(MAX(CASE WHEN v.idTipoComponente = 2 THEN v.valor END), 0) AS uso_ram,
+    IFNULL(MAX(CASE WHEN v.idTipoComponente = 3 THEN v.valor END), 0) AS uso_disco,
+    IFNULL(MAX(CASE WHEN v.idTipoComponente = 4 THEN v.valor END), 0) AS conexao
+FROM Atm a
+LEFT JOIN vw_ultimas_leituras v 
+    ON a.numeracao = v.numeracao AND a.fkEmpresa = v.fkEmpresa
+GROUP BY a.idAtm, a.fkEmpresa, a.numeracao;

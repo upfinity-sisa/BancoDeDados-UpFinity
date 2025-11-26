@@ -72,38 +72,6 @@ INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VAL
 (5, 2, 1, 80.0), -- Alerta crítico para temperatura da CPU > 80.0C
 (5, 2, 2, 70.0); -- Alerta importante para temperatura da CPU > 70.0C
 
-CREATE OR REPLACE VIEW vw_ultimas_leituras AS
-SELECT 
-    atm.numeracao,
-    c.valor,
-    tp.nome,
-    tp.idTipoComponente,
-    atm.fkEmpresa
-FROM Captura c
-JOIN (
-    SELECT fkAtm, fkComponente, MAX(horario) as max_horario
-    FROM Captura
-    GROUP BY fkAtm, fkComponente
-) latest 
-    ON c.fkAtm = latest.fkAtm 
-    AND c.fkComponente = latest.fkComponente 
-    AND c.horario = latest.max_horario
-JOIN Componente co ON c.fkComponente = co.idComponente AND c.fkAtm = co.fkAtm
-JOIN Atm atm ON co.fkAtm = atm.idAtm
-JOIN TipoComponente tp ON co.fkTipoComponente = tp.idTipoComponente
-WHERE tp.idTipoComponente IN (1, 2, 3, 4);
-
-CREATE OR REPLACE VIEW vw_visao_geral AS
-SELECT 
-    fkEmpresa,
-    numeracao,
-    MAX(CASE WHEN idTipoComponente = 1 THEN valor END) AS uso_cpu,
-    MAX(CASE WHEN idTipoComponente = 2 THEN valor END) AS uso_ram,
-    MAX(CASE WHEN idTipoComponente = 3 THEN valor END) AS uso_disco,
-    MAX(CASE WHEN idTipoComponente = 4 THEN valor END) AS conexao
-FROM vw_ultimas_leituras
-GROUP BY fkEmpresa, numeracao;
-
 -- BRENO
 -- UPDATE Empresa SET idSlack = 'C09UCNHCEAD' WHERE idEmpresa = 2;
 
