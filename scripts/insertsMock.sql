@@ -28,16 +28,16 @@ INSERT INTO Endereco (logradouro, num, bairro, cidade, UF, CEP, complemento) VAL
 ('Avenida Paulista', '1000', 'Bela Vista', 'São Paulo', 'SP', '01310100', 'Próximo ao metrô Trianon-Masp'),
 ('Avenida Rio Branco', '250', 'Centro', 'Rio de Janeiro', 'RJ', '20040009', 'Andar 15, Bloco B');
 
-INSERT INTO Empresa (fkEndereco, fkPlano, razaoSocial, CNPJ, statusAprovacao, statusPagamento, nomeFantasia) VALUES
-(1, 1, 'Banco Digital Exemplo SA', '12345678000190', 1, TRUE, 'Banco Exemplo'),
-(2, null, 'Banco Digital Exemplo XY', '12345678000110', 1, FALSE, 'Banco Exemplo');
+INSERT INTO Empresa (fkEndereco, fkPlano, razaoSocial, CNPJ, statusAprovacao, statusPagamento, nomeFantasia, idSlack) VALUES
+(1, 1, 'Banco Digital Exemplo SA', '12345678000190', 1, TRUE, 'Banco Exemplo', 'C09UCNHCEAD'),
+(2, null, 'Banco Digital Exemplo XY', '12345678000110', 1, FALSE, 'Banco Exemplo', null);
 
 INSERT INTO Usuario (fkTipoUsuario, fkEmpresa, nome, CPF, email, senha) VALUES
 (2, 1, 'João da Silva', '11122233344', 'joao.silva@bancoexemplo.com', 'senhaForte123'),
 (3, 2, 'Maria Oliveira', '55566677788', 'maria.oliveira@bancoexemplo.com', 'outraSenha456');
 
 INSERT INTO Atm (fkEmpresa, numeracao, IP, statusEstado, statusMonitoramento) VALUES
-(1, 1, 123365907822356, 1, 1),
+(1, 1, '3.214.140.9', 1, 1),
 (1, 2, 901832106892356, 0, 2),
 (1, 3, "169.254.238.99", 0, 2),
 (2, 4, " ", 1, 0);
@@ -71,10 +71,4 @@ INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VAL
 INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VALUES
 (5, 1, 1, 80.0), -- Alerta crítico para temperatura da CPU > 80.0C
 (5, 1, 2, 70.0); -- Alerta importante para temperatura da CPU > 70.0C
-
--- BRENO
-UPDATE Empresa SET idSlack = 'C09UCNHCEAD' WHERE idEmpresa = 1;
-
--- BRENO
-UPDATE Atm SET IP = '3.214.140.9' WHERE fkEmpresa = 1 and idAtm = 1;
 
