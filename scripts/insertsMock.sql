@@ -76,5 +76,5 @@ INSERT INTO Parametro (fkTipoComponente, fkEmpresa, fkTipoAlerta, limiteMax) VAL
 UPDATE Empresa SET idSlack = 'C09UCNHCEAD' WHERE idEmpresa = 1;
 
 -- BRENO
-UPDATE Atm SET IP = '172.31.28.51' WHERE fkEmpresa = 1;
+UPDATE Atm SET IP = '3.214.140.9' WHERE fkEmpresa = 1;
 
